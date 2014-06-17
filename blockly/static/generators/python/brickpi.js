@@ -124,6 +124,30 @@ Blockly.Language.motor_set= {
     this.setTooltip('Motor 1-4, Power -100 to 100');
     }
 };
+Blockly.Language.motor_servo= {
+    category: 'Motors',
+    helpUrl: 'http://www.google.com',
+    init: function() {
+    this.setColour(300);
+    this.appendDummyInput("")
+        .appendTitle("Set motor")
+            .appendTitle(new Blockly.FieldDropdown([["1", "1"], ["2", "2"], 
+                ["3","3"],["4","4"],["All","All"]]), 'motor_num');
+      /*this.appendDummyInput()
+        .appendTitle(' MotorAngle')
+            .appendTitle(new Blockly.FieldTextInput('0',
+            Blockly.Language.math_number.validator), 'motor_angle');*/
+    this.appendDummyInput("")
+            .appendTitle(" to angle");
+    this.appendValueInput('motor_angle')
+            .setCheck('Number');
+    this.setInputsInline(true);
+    this.setOutput(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Motor 1-4, Angle 0 to 360');
+    }
+};
 
 Blockly.Language.light_set= {
     category: 'Lights',
@@ -330,6 +354,30 @@ Blockly.Python.motor_set = function() {
     var code;
     var value_motor_number= this.getTitleValue('motor_num');
     //var value_motor_power = parseInt(this.getTitleValue('motor_power'));
+    if(value_motor_number=="All") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ ', motor2=' + value_motor_power + ', motor3=' + value_motor_power + '))'+'\n'
+    }
+    else if(value_motor_number=="1") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="2") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor2=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="3") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor3=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="4") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_power+ '))'+'\n'
+    }
+    code = code + 'toSend = Message.encode(toSend)' + '\n'
+    code= code + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
+    return code;
+};
+Blockly.Python.motor_set = function() {
+    var value_motor_angle = Blockly.Python.valueToCode(this, 'motor_angle', Blockly.Python.ORDER_NONE);
+    var code;
+    var value_motor_number= this.getTitleValue('motor_num');
+
     if(value_motor_number=="All") {
     code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ ', motor2=' + value_motor_power + ', motor3=' + value_motor_power + '))'+'\n'
     }
