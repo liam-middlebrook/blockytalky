@@ -27,7 +27,77 @@ if(!Blockly.Language) Blockly.Language= {};
 
 var prefix = 'message.getContent()';
 
-Blockly.Language.sensor_light={category:"Sensors",helpUrl:"",init:function(){this.setColour(300);this.appendDummyInput("").appendTitle("Sensor Value:");this.appendDummyInput("").appendTitle("PortNumber").appendTitle(new Blockly.FieldDropdown([["1","1"],["2","2"],["3","3"],["4","4"]]),"light");this.setInputsInline(!0);this.setOutput(!0,"Number");this.setTooltip("Returns value of light sensor 0-1024")}};
+Blockly.Language.sensor_touch={
+    category:"Sensors",
+    helpUrl:"",
+    init:function() {
+    this.setColour(50);
+    this.appendDummyInput("")
+        .appendTitle("Touch Sensor:");
+    this.appendDummyInput("")
+        .appendTitle("Port")
+        .appendTitle(new Blockly.FieldDropdown([["1","1"],["2","2"],
+            ["3","3"],["4","4"]]),"port");
+    this.appendDummyInput("")
+        .appendTitle(new Blockly.FieldDropdown([["is pressed","1"],["is released","0"]]),"status");
+    this.setInputsInline(true);
+    this.setOutput(true, 'Boolean');
+    this.setPreviousStatement(false);
+    this.setNextStatement(false);
+    this.setTooltip("Returns the status of a touch sensor");
+    }
+};
+
+Blockly.Language.sensor_light={
+    category:"Sensors",
+    helpUrl:"",
+    init:function() {
+    this.setColour(50);
+    this.appendDummyInput("")
+        .appendTitle("Light Sensor:");
+    this.appendDummyInput("")
+        .appendTitle("Port")
+        .appendTitle(new Blockly.FieldDropdown([["1","1"],["2","2"],
+            ["3","3"],["4","4"]]),"port");
+    this.setInputsInline(!0);
+    this.setOutput(!0,"Number");
+    this.setTooltip("Returns the value of a light sensor");
+    }
+};
+
+Blockly.Language.sensor_ultrasonic={
+    category:"Sensors",
+    helpUrl:"",
+    init:function() {
+    this.setColour(50);
+    this.appendDummyInput("")
+        .appendTitle("Ultrasonic Sensor:");
+    this.appendDummyInput("")
+        .appendTitle("Port")
+        .appendTitle(new Blockly.FieldDropdown([["1","1"],["2","2"],
+            ["3","3"],["4","4"]]),"port");
+    this.setInputsInline(!0);
+    this.setOutput(!0,"Number");
+    this.setTooltip("Returns the value of an ultrasonic sensor");
+    }
+};
+
+Blockly.Language.sensor_sound={
+    category:"Sensors",
+    helpUrl:"",
+    init:function() {
+    this.setColour(50);
+    this.appendDummyInput("")
+        .appendTitle("Sound Sensor:");
+    this.appendDummyInput("")
+        .appendTitle("Port")
+        .appendTitle(new Blockly.FieldDropdown([["1","1"],["2","2"],
+            ["3","3"],["4","4"]]),"port");
+    this.setInputsInline(!0);
+    this.setOutput(!0,"Number");
+    this.setTooltip("Returns the value of a sound sensor");
+    }
+};
 
 
 Blockly.Language.motor_set= {
@@ -36,9 +106,7 @@ Blockly.Language.motor_set= {
     init: function() {
     this.setColour(300);
     this.appendDummyInput("")
-        .appendTitle("Set");
-    this.appendDummyInput("")
-        .appendTitle("Motor")
+        .appendTitle("Set motor")
             .appendTitle(new Blockly.FieldDropdown([["1", "1"], ["2", "2"], 
                 ["3","3"],["4","4"],["All","All"]]), 'motor_num');
       /*this.appendDummyInput()
@@ -46,16 +114,67 @@ Blockly.Language.motor_set= {
             .appendTitle(new Blockly.FieldTextInput('100',
             Blockly.Language.math_number.validator), 'motor_power');*/
     this.appendDummyInput("")
-            .appendTitle(" to Power");
+            .appendTitle(" to power");
     this.appendValueInput('motor_power')
             .setCheck('Number');
     this.setInputsInline(true);
     this.setOutput(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip('Motor 1-4, Power -255 to 255');
+    this.setTooltip('Motor 1-4, Power -100 to 100');
     }
 };
+Blockly.Language.motor_servo= {
+    category: 'Motors',
+    helpUrl: 'http://www.google.com',
+    init: function() {
+    this.setColour(300);
+    this.appendDummyInput("")
+        .appendTitle("Set motor")
+            .appendTitle(new Blockly.FieldDropdown([["1", "1"], ["2", "2"], 
+                ["3","3"],["4","4"],["All","All"]]), 'motor_num');
+      /*this.appendDummyInput()
+        .appendTitle(' MotorAngle')
+            .appendTitle(new Blockly.FieldTextInput('0',
+            Blockly.Language.math_number.validator), 'motor_angle');*/
+    this.appendDummyInput("")
+            .appendTitle(" to angle");
+    this.appendValueInput('motor_angle')
+            .setCheck('Number');
+    this.setInputsInline(true);
+    this.setOutput(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Motor 1-4, Angle 0 to 360');
+    }
+};
+
+Blockly.Language.light_set= {
+    category: 'Lights',
+    helpUrl: 'http://www.google.com',
+    init: function() {
+    this.setColour(300);
+    this.appendDummyInput("")
+        .appendTitle("Set light on motor port")
+            .appendTitle(new Blockly.FieldDropdown([["1", "1"], ["2", "2"], 
+                ["3","3"],["4","4"],["All","All"]]), 'motor_num');
+      /*this.appendDummyInput()
+        .appendTitle(' MotorPower')
+            .appendTitle(new Blockly.FieldTextInput('100',
+            Blockly.Language.math_number.validator), 'motor_power');*/
+    this.appendDummyInput("")
+            .appendTitle(" to power");
+    this.appendValueInput('motor_power')
+            .setCheck('Number');
+    this.setInputsInline(true);
+    this.setOutput(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Light in motor port 1-4, Power 0 to 100');
+    }
+};
+
+
 
 Blockly.Language.motor_get_encoder= {
     category: 'Motors',
@@ -93,7 +212,7 @@ Blockly.Language.pin_in= {
     category: 'GPIO',
     helpUrl: '',
     init: function() {
-    this.setColour(300);
+    this.setColour(0);
     this.appendDummyInput("")
         .appendTitle("GPIO In Pin:")
         .appendTitle(new Blockly.FieldDropdown([["12", "12"], ["16", "16"],
@@ -112,7 +231,7 @@ Blockly.Language.pin_out= {
     category: 'GPIO',
     helpUrl: '',
     init: function() {
-    this.setColour(300);
+    this.setColour(0);
     this.appendDummyInput("")
         .appendTitle("GPIO Out Pin:")
         .appendTitle(new Blockly.FieldDropdown([["7", "7"], ["11", "11"],
@@ -236,6 +355,30 @@ Blockly.Python.motor_set = function() {
     var value_motor_number= this.getTitleValue('motor_num');
     //var value_motor_power = parseInt(this.getTitleValue('motor_power'));
     if(value_motor_number=="All") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ ', motor2=' + value_motor_power + ', motor3=' + value_motor_power + ', motor4=' + value_motor_power + '))'+'\n'
+    }
+    else if(value_motor_number=="1") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="2") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor2=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="3") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor3=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="4") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_power+ '))'+'\n'
+    }
+    code = code + 'toSend = Message.encode(toSend)' + '\n'
+    code= code + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
+    return code;
+};
+Blockly.Python.motor_servo = function() {
+    var value_motor_angle = Blockly.Python.valueToCode(this, 'motor_angle', Blockly.Python.ORDER_NONE);
+    var code;
+    var value_motor_number= this.getTitleValue('motor_num');
+
+    if(value_motor_number=="All") {
     code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ ', motor2=' + value_motor_power + ', motor3=' + value_motor_power + '))'+'\n'
     }
     else if(value_motor_number=="1") {
@@ -250,7 +393,34 @@ Blockly.Python.motor_set = function() {
     else if(value_motor_number=="4") {
     code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_power+ '))'+'\n'
     }
-    code= code + 'ws.send(Message.encode(toSend))'+'\n'+'time.sleep(.05)'+'\n'
+    code = code + 'toSend = Message.encode(toSend)' + '\n'
+    code= code + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
+    return code;
+};
+
+Blockly.Python.light_set = function() {
+    //var value_motor_number = Blockly.Python.valueToCode(this, 'motor_num', Blockly.Python.ORDER_ATOMIC);
+    var value_motor_power = Blockly.Python.valueToCode(this, 'motor_power', Blockly.Python.ORDER_NONE);
+    var code;
+    var value_motor_number= this.getTitleValue('motor_num');
+    //var value_motor_power = parseInt(this.getTitleValue('motor_power'));
+    if(value_motor_number=="All") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ ', motor2=' + value_motor_power + ', motor3=' + value_motor_power + '))'+'\n'
+    }
+    else if(value_motor_number=="1") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="2") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor2=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="3") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor3=' +value_motor_power+ '))'+'\n'
+    }
+    else if(value_motor_number=="4") {
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_power+ '))'+'\n'
+    }
+    code = code + 'toSend = Message.encode(toSend)' + '\n'
+    code= code + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
     return code;
 };
 
@@ -274,7 +444,8 @@ Blockly.Python.pin_in = function() {
     else if(value_pin_number=="22") {
     code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(pin22=' +pin_value+ '))'+'\n'
     }
-    code= code + 'ws.send(Message.encode(toSend))'+'\n'+'time.sleep(.05)'+'\n'
+    code = code + 'toSend = Message.encode(toSend)' + '\n'
+    code= code + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
     return code;
 };
 
@@ -298,12 +469,16 @@ Blockly.Python.pin_out = function() {
     else if(value_pin_number=="15") {
     code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(pin15=' +pin_value+ '))'+'\n'
     }
-    code= code + 'ws.send(Message.encode(toSend))'+'\n'+'time.sleep(.05)'+'\n'
+    code = code + 'toSend = Message.encode(toSend)' + '\n'
+    code= code + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
     return code;
 };
 
 Blockly.Python.motor_all_stop= function() {
-    var code= 'toSend= Message(self.hostname, None, "HwCmd", Message.createImage(motor1=0, motor2=0, motor3=0))'+'\n'+ 'ws.send(Message.encode(toSend))'+'\n'+'time.sleep(.05)'+'\n';
+    var code= 'toSend= Message(self.hostname, None, "HwCmd", Message.createImage(motor1=0, motor2=0, motor3=0, motor4=0))'+
+    '\n' + 'toSend = Message.encode(toSend)' + '\n' 
+    + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'
+    +'time.sleep(.01)'+'\n';
     return code;
 };
 
@@ -335,7 +510,7 @@ Blockly.Python.led_set= function() {
   else {
     value_led2= 0;
   }
-    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(led1=' +value_led1+ ', led2=' +value_led2+ '))'+'\n'+'ws.send(Message.encode(toSend))'+'\n';
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(led1=' +value_led1+ ', led2=' +value_led2+ '))'+'\n'+'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n';
   return code;
 };
 
@@ -359,4 +534,29 @@ Blockly.Python.controls_inf_loop= function () {
     return code;
 };
 
-Blockly.Python.sensor_light=function(){var b=this.getTitleValue("light");return['self.robot["sensors"]['+(b-1)+"]",Blockly.Python.ORDER_ATOMIC]};Blockly.Python.sensor_touch=function(){var b=this.getTitleValue("touch");return["self.touchSensor("+(b-1)+")",Blockly.Python.ORDER_ATOMIC]};
+Blockly.Python.sensor_touch=function() {
+    var b=this.getTitleValue("port");
+    var a=this.getTitleValue("status");
+    if (a == 1){
+        return['self.robot["sensors"]['+(b-1)+'] == 1',Blockly.Python.ORDER_ATOMIC];}
+    if (a == 0){
+        return['self.robot["sensors"]['+(b-1)+'] == 0',Blockly.Python.ORDER_ATOMIC];}
+};
+
+Blockly.Python.sensor_light=function() {
+    var b=this.getTitleValue("port");;
+
+        return['self.robot["sensors"]['+(b-1)+']',Blockly.Python.ORDER_ATOMIC];
+};
+
+Blockly.Python.sensor_ultrasonic=function() {
+    var b=this.getTitleValue("port");;
+
+        return['self.robot["sensors"]['+(b-1)+']',Blockly.Python.ORDER_ATOMIC];
+};
+
+Blockly.Python.sensor_sound=function() {
+    var b=this.getTitleValue("port");;
+
+        return['self.robot["sensors"]['+(b-1)+']',Blockly.Python.ORDER_ATOMIC];
+};
