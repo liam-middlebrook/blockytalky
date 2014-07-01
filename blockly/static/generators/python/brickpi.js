@@ -474,13 +474,6 @@ Blockly.Python.pin_out = function() {
     return code;
 };
 
-Blockly.Python.motor_all_stop= function() {
-    var code= 'toSend= Message(self.hostname, None, "HwCmd", Message.createImage(motor1=0, motor2=0, motor3=0, motor4=0))'+
-    '\n' + 'toSend = Message.encode(toSend)' + '\n' 
-    + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'
-    +'time.sleep(.01)'+'\n';
-    return code;
-};
 
 Blockly.Python.motor_get_encoder= function() {
     var value_encoder= this.getTitleValue('enc');
