@@ -379,19 +379,19 @@ Blockly.Python.motor_servo = function() {
     var value_motor_number= this.getTitleValue('motor_num');
 
     if(value_motor_number=="All") {
-    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ ', motor2=' + value_motor_power + ', motor3=' + value_motor_power + '))'+'\n'
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_angle+ ', motor2=' + value_motor_angle + ', motor3=' + value_motor_angle + '))'+'\n'
     }
     else if(value_motor_number=="1") {
-    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_power+ '))'+'\n'
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=' +value_motor_angle+ '))'+'\n'
     }
     else if(value_motor_number=="2") {
-    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor2=' +value_motor_power+ '))'+'\n'
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor2=' +value_motor_angle+ '))'+'\n'
     }
     else if(value_motor_number=="3") {
-    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor3=' +value_motor_power+ '))'+'\n'
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor3=' +value_motor_angle+ '))'+'\n'
     }
     else if(value_motor_number=="4") {
-    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_power+ '))'+'\n'
+    code= 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_angle+ '))'+'\n'
     }
     code = code + 'toSend = Message.encode(toSend)' + '\n'
     code= code + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
