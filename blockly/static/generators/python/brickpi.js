@@ -397,10 +397,10 @@ Blockly.Python.motor_servo = function() {
     code+= '\t' + 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor2=' +value_motor_angle+ '))'+'\n'
     }
     else if(value_motor_number=="3") {
-    code+= '\t' + toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor3=' +value_motor_angle+ '))'+'\n'
+    code+= '\t' + 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor3=' +value_motor_angle+ '))'+'\n'
     }
     else if(value_motor_number=="4") {
-    code+= '\t' + toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_angle+ '))'+'\n'
+    code+= '\t' + 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_angle+ '))'+'\n'
     }
     code += '\t' + 'toSend = Message.encode(toSend)' + '\n'
     code += '\t' + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
