@@ -403,7 +403,7 @@ Blockly.Python.motor_servo = function() {
     code+= '\t' + 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor4=' +value_motor_angle+ '))'+'\n'
     }
     code += '\t' + 'toSend = Message.encode(toSend)' + '\n'
-    code += '\t' + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
+    code += '\t' + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'\t'+'time.sleep(.01)'+'\n'
 
 
 
