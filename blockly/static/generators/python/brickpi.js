@@ -381,7 +381,7 @@ Blockly.Python.motor_servo = function() {
     code =  "initAngle = ReadEncoder(motor)" +'\n'
     code += "degrees = " + value_motor_angle + '\n'
     code += "motor = " + value_motor_number + '\n'
-    code += "diff = degrees - (ReadEncoder(motor))"
+    code += "diff = degrees - (ReadEncoder(motor))" + '\n'
     code += "while abs(diff)>5):" + '\n'
     code += '\t' + "power = diff" + '\n'
     code += '\t' + "SetMotor(motor, power)" + '\n'
