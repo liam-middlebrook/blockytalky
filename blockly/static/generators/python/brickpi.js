@@ -378,10 +378,10 @@ Blockly.Python.motor_servo = function() {
     var code;
     var value_motor_number= this.getTitleValue('motor_num');
 
-    code =  "initAngle = self.getSensorValue(\"encoder\", " + value_motor_number + ")" +'\n'
+    code =  "initAngle = self.getSensorValue(\"encoder\", " + value_motor_number + " - 1)" +'\n'
     code += "degrees = " + value_motor_angle + '\n'
     code += "motor = " + value_motor_number + '\n'
-    code += "diff = degrees - self.getSensorValue(\"encoder\", motor)" + '\n'
+    code += "diff = degrees - self.getSensorValue(\"encoder\", motor - 1)" + '\n'
     code += "while abs(diff)>5:" + '\n'
     code += '\t' + "power = diff" + '\n'
 
@@ -407,7 +407,7 @@ Blockly.Python.motor_servo = function() {
 
 
 
-    code += '\t' + "diff= degrees - self.getSensorValue(\"encoder\", motor) - initAngle" + '\n'
+    code += '\t' + "diff= degrees - self.getSensorValue(\"encoder\", motor - 1) - initAngle" + '\n'
 
 
     if(value_motor_number=="All") {
