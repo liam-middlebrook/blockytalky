@@ -386,7 +386,7 @@ Blockly.Python.motor_servo = function() {
     code += '\t' + "power = diff" + '\n'
 
 
-    code+= '\t' + "print power"
+    code+= '\t' + "print power" + '\n'
     if(value_motor_number=="All") {
     code+= '\t' + 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=power, motor2=power, motor3=power))'+'\n'
     }
