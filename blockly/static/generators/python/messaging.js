@@ -52,6 +52,24 @@ Blockly.Language.facebook_poke= {
     }
 };
 
+Blockly.Language.messaging_print= {
+    category: 'Messaging',
+    helpUrl: 'http://www.google.com',
+    init: function() {
+	this.setColour(200);
+	this.appendDummyInput("")
+	    .appendTitle("Print (to console):")
+	this.appendDummyInput("")
+	    .appendTitle(" ")
+            .appendTitle(new Blockly.FieldTextInput('output_string goes here'), 'command');
+	this.setInputsInline(true);
+	this.setOutput(false);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setTooltip('send text to stdout');
+    }
+};
+
 Blockly.Language.messaging_tell= {
     category: 'Messaging',
     helpUrl: 'http://www.google.com',
@@ -187,6 +205,13 @@ Blockly.Python.send_osc= function() {
 
 Blockly.Python.facebook_poke= function() {
     var code= 'facebook poke code'+'\n';
+    return code;
+};
+
+Blockly.Python.messaging_print= function() {
+    var target= this.getTitleValue('target');
+    var command= this.getTitleValue('command');
+    var code= 'print "' + command + '"\n';
     return code;
 };
 
