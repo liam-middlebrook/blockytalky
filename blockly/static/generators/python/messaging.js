@@ -58,7 +58,7 @@ Blockly.Language.messaging_print= {
     init: function() {
 	this.setColour(200);
 	this.appendDummyInput("")
-	    .appendTitle("Tell:")
+	    .appendTitle("Print (to console):")
 	this.appendDummyInput("")
 	    .appendTitle(" ")
             .appendTitle(new Blockly.FieldTextInput('output_string goes here'), 'command');
