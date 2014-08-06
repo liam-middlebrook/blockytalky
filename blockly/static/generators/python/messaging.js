@@ -211,7 +211,7 @@ Blockly.Python.facebook_poke= function() {
 Blockly.Python.messaging_print= function() {
     var target= this.getTitleValue('target');
     var command= this.getTitleValue('command');
-    var code= 'print ' + command + '\n';
+    var code= 'print "' + command + '"\n';
     return code;
 };
 
