@@ -382,8 +382,9 @@ Blockly.Python.motor_servo = function() {
     code += "degrees = " + value_motor_angle + '\n'
     code += "motor = " + value_motor_number + '\n'
     code += "diff = degrees - self.getSensorValue(\"encoder\", motor - 1)" + '\n'
-    code += "while abs(diff%360)>5:" + '\n'
-    code += '\t' + "power = ((diff%360) - 180)" + '\n'
+    code += "diff = ((diff%360)-180)" + '\n'
+    code += "while abs(diff)>5:" + '\n'
+    code += '\t' + "power = diff" + '\n'
 
 
     code+= '\t' + "print power" + '\n'
