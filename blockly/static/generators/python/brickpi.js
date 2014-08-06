@@ -393,6 +393,7 @@ Blockly.Python.motor_set = function() {
     return code;
 };
 Blockly.Python.motor_zero = function() {
+    var value_motor_number= this.getTitleValue('motor_num');
     var code = "initAngle = self.getSensorValue(\"encoder\", " + value_motor_number + " -1)" + '\n'
     return code;
 };
