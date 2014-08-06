@@ -124,6 +124,25 @@ Blockly.Language.motor_set= {
     this.setTooltip('Motor 1-4, Power -100 to 100');
     }
 };
+Blockly.Language.motor_zero= {
+    category: 'Motors',
+    helpUrl: 'http://www.google.com',
+    init: function() {
+    this.setColour(300);
+    this.appendDummyInput("")
+        .appendTitle("Set motor")
+            .appendTitle(new Blockly.FieldDropdown([["1", "1"], ["2", "2"], 
+                ["3","3"],["4","4"]]), 'motor_num');
+         this.appendDummyInput("")
+            .appendTitle(" to angle");
+    this.setInputsInline(true);
+    this.setOutput(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Motor 1-4');
+    }
+};
+
 Blockly.Language.motor_servo= {
     category: 'Motors',
     helpUrl: 'http://www.google.com',
@@ -373,12 +392,15 @@ Blockly.Python.motor_set = function() {
     code= code + 'channel.basic_publish(exchange="", routing_key="HwCmd", body=toSend)'+'\n'+'time.sleep(.01)'+'\n'
     return code;
 };
+Blockly.Python.motor_zero = function() {
+    var code = "initAngle = self.getSensorValue(\"encoder\", " + value_motor_number + " -1)" + '\n'
+};
 Blockly.Python.motor_servo = function() {
     var value_motor_angle = Blockly.Python.valueToCode(this, 'motor_angle', Blockly.Python.ORDER_NONE);
     var code;
     var value_motor_number= this.getTitleValue('motor_num');
 
-    code =  "initAngle = self.getSensorValue(\"encoder\", " + value_motor_number + " - 1)" +'\n'
+    code = ""
     code += "degrees = " + value_motor_angle + '\n'
     code += "motor = " + value_motor_number + '\n'
     code += "diff = degrees - self.getSensorValue(\"encoder\", motor - 1)" + '\n'
