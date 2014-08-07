@@ -156,8 +156,13 @@ Blockly.Language.motor_servo= {
         .appendTitle(' MotorAngle')
             .appendTitle(new Blockly.FieldTextInput('0',
             Blockly.Language.math_number.validator), 'motor_angle');*/
+        .appendTitle(' MaxSpeed')
+            .appendTitle(new Blockly.FieldTextInput('0',
+            Blockly.Language.math_number.validator), 'max_speed');*/
     this.appendDummyInput("")
             .appendTitle(" to angle");
+    this.appendValueInput('max_speed')
+            .setCheck('Number');
     this.appendValueInput('motor_angle')
             .setCheck('Number');
     this.setInputsInline(true);
@@ -401,8 +406,9 @@ Blockly.Python.motor_servo = function() {
     var value_motor_angle = Blockly.Python.valueToCode(this, 'motor_angle', Blockly.Python.ORDER_NONE);
     var code;
     var value_motor_number= this.getTitleValue('motor_num');
+    var value_max_speed= Blockly.Python.valueToCode(this, 'max_speed', Blockly.Python.ORDER_NONE);
 
-    code = ""
+    code = "max_speed = " + value_max_speed + '\n'
     code += "degrees = " + value_motor_angle + '\n'
     code += "motor = " + value_motor_number + '\n'
     code += "diff = degrees - self.getSensorValue(\"encoder\", motor - 1)" + '\n'
@@ -410,7 +416,7 @@ Blockly.Python.motor_servo = function() {
     code += "while abs(diff)>5:" + '\n'
     code += '\t' + "power = diff*0.85" + '\n'
 
-    code += '\t' + "power = max(min(power, 15), -15)" + '\n'
+    code += '\t' + "power = max(min(power, max_speed), -max_speed)" + '\n'
     code+= '\t' + "print power" + '\n'
     if(value_motor_number=="All") {
     code+= '\t' + 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=power, motor2=power, motor3=power))'+'\n'
