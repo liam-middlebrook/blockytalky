@@ -410,7 +410,7 @@ Blockly.Python.motor_servo = function() {
     code += "while abs(diff)>5:" + '\n'
     code += '\t' + "power = diff*0.85" + '\n'
 
-    code += '\t' + "power = max(min(power, 30), -30)" + '\n'
+    code += '\t' + "power = max(min(power, 15), -15)" + '\n'
     code+= '\t' + "print power" + '\n'
     if(value_motor_number=="All") {
     code+= '\t' + 'toSend = Message(self.hostname, None, "HwCmd", Message.createImage(motor1=power, motor2=power, motor3=power))'+'\n'
