@@ -156,7 +156,7 @@ Blockly.Language.motor_servo= {
         .appendTitle(' MotorAngle')
             .appendTitle(new Blockly.FieldTextInput('0',
             Blockly.Language.math_number.validator), 'motor_angle');*/
-        .appendTitle(' MaxSpeed')
+      /*.appendTitle(' MaxSpeed')
             .appendTitle(new Blockly.FieldTextInput('0',
             Blockly.Language.math_number.validator), 'max_speed');*/
     this.appendDummyInput("")
