@@ -130,11 +130,9 @@ Blockly.Language.motor_zero= {
     init: function() {
     this.setColour(300);
     this.appendDummyInput("")
-        .appendTitle("Set motor")
+        .appendTitle("Zero out motor:")
             .appendTitle(new Blockly.FieldDropdown([["1", "1"], ["2", "2"], 
                 ["3","3"],["4","4"]]), 'motor_num');
-         this.appendDummyInput("")
-            .appendTitle(" to angle");
     this.setInputsInline(true);
     this.setOutput(false);
     this.setPreviousStatement(true);
