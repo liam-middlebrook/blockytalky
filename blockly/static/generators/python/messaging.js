@@ -226,8 +226,9 @@ Blockly.Python.send_osc= function() {
 Blockly.Python.facebook_post= function() {
     var token = this.getTitleValue('token');
     var content = this.getTitleValue('content');
-    var code = 'graph = GraphAPI("' + token + '")' + '\n'
-    code += 'graph.post("me/feed", message="' + content + '")'
+    var code = 'from facepy import GraphAPI' + '\n'
+    code += 'graph = GraphAPI("' + token + '")' + '\n'
+    code += 'graph.post("me/feed", message="' + content + '")' +'\n'
 };
 
 Blockly.Python.facebook_poke= function() {
