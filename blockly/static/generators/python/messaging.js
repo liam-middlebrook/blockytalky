@@ -229,6 +229,7 @@ Blockly.Python.facebook_post= function() {
     var code = 'from facepy import GraphAPI' + '\n'
     code += 'graph = GraphAPI("' + token + '")' + '\n'
     code += 'graph.post("me/feed", message="' + content + '")' +'\n'
+    return code;
 };
 
 Blockly.Python.facebook_poke= function() {
