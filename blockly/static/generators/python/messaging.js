@@ -17,6 +17,27 @@ Blockly.Language.facebook_msg= {
     }
 };
 
+
+Blockly.Language.facebook_post= {
+    category: 'Facebook',
+    helpUrl: '',
+    init: function() {
+	this.setColour(200);
+	this.appendDummyInput("")
+	    .appendTitle("Facebook Post");
+	this.appendDummyInput("")
+	    .appendTitle("token")
+            .appendTitle(new Blockly.FieldTextInput('ACCESS TOKEN'), 'token');
+        this.appendDummyInput("")
+	    .appendTitle("content")
+            .appendTitle(new Blockly.FieldTextInput('Post your Status Message Here'), 'content');
+        this.setInputsInline(true);
+	this.setPreviousStatement(false);
+	this.setNextStatement(false);
+	this.setTooltip('get facebook message');
+    }
+};
+
 Blockly.Language.send_osc = {
 category: 'Messaging',
     helpUrl: 'http://www.google.com',
@@ -202,6 +223,12 @@ Blockly.Python.send_osc= function() {
     return code;
 };
 
+Blockly.Python.facebook_post= function() {
+    var token = this.getTitleValue('token');
+    var content = this.getTitleValue('content');
+    var code = 'graph = GraphAPI("' + token + '")' + '\n'
+    code += 'graph.post("me/feed", message="' + content + '")'
+};
 
 Blockly.Python.facebook_poke= function() {
     var code= 'facebook poke code'+'\n';
