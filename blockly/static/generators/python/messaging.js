@@ -180,7 +180,29 @@ category: 'Messaging',
   }
 };
 
-
+Blockly.Language.mail_email = {
+category: 'Mail',
+  helpUrl: 'http://en.wikipedia.org/wiki/Email',
+  init: function() {
+    this.setColour(120);
+    this.appendDummyInput("")
+        .appenditle("Create email");
+    this.appendDummyInput("")
+        .appendTitle("Sender: ")
+        .appendTitle(new Blockly.FieldTextInput('sender'), 'Sender');
+    this.appendDummyInput("")
+        .appendTitle("Recipient: ")
+        .appendTitle(new Blockly.FieldTextInput('target'), 'Recipient');
+    this.appendDummyInput("")
+        .appendTitle("Message: ")
+        .appendTitle(new Blockly.FieldTextInput('message'), 'Message');
+    this.appendDummyInput("")
+        .appendTitle("SMTP Server")
+        .appendTitle(new Blockly.FieldTextInput('smtp'), 'SMTP');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
 
 //
 //Define generators
@@ -296,4 +318,14 @@ Blockly.Python.send_osc_message = function() {
   console.log('Just tried to send OSC message.\n' + code);
   return code;
 };
+
+Blockly.Python.mail_email= function() {
+    var target = this.getTitleValue('target');
+    var sender = this.getTitleValue('sender');
+    var smtp = this.getTitleValue('smtp');
+    var message = this.getTitleValue('message');
+    var code= 'print "EMAIL From: ' + sender + ' To: ' + target + ' Contains ' + message + ' OnServer: ' + smtp;
+    return code;
+};
+
 
