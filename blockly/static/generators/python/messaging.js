@@ -25,9 +25,9 @@ Blockly.Language.facebook_post= {
 	this.setColour(200);
 	this.appendDummyInput("")
 	    .appendTitle("Facebook Post");
-	this.appendDummyInput("")
+	/*this.appendDummyInput("")
 	    .appendTitle("token")
-            .appendTitle(new Blockly.FieldTextInput('ACCESS TOKEN'), 'token');
+            .appendTitle(new Blockly.FieldTextInput('ACCESS TOKEN'), 'token');*/
         this.appendDummyInput("")
 	    .appendTitle("content")
             .appendTitle(new Blockly.FieldTextInput('Post your Status Message Here'), 'content');
@@ -227,7 +227,10 @@ Blockly.Python.facebook_post= function() {
     var token = this.getTitleValue('token');
     var content = this.getTitleValue('content');
     var code = 'from facepy import GraphAPI' + '\n'
-    code += 'graph = GraphAPI("' + token + '")' + '\n'
+    code += 'import yaml' + '\n'
+    code += 'with open("fb_config.yaml", "r") as myfile:
+    code += '\t' + 'token = yaml.load(myfile.read())
+    code += 'graph = GraphAPI(token)' + '\n'
     code += 'graph.post("me/feed", message="' + content + '")' +'\n'
     return code;
 };
