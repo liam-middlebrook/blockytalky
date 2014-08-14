@@ -177,7 +177,7 @@ def code_to_file(code, file_name, file_label):
 
 def upload_code(xml_data, python_data):
     uploadStart = time.time()
-    code_to_file(etree.tostring(etree.fromstring(xml_data), pretty_print=True),, 'code/rawxml.txt', 'XML')
+    code_to_file(etree.tostring(etree.fromstring(xml_data), pretty_print=True), 'code/rawxml.txt', 'XML')
     code_to_file(convert_usercode(python_data), 'backend/usercode.py', 'Python')
 
     startTime = time.time()
