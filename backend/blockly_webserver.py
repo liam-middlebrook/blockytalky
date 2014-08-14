@@ -14,6 +14,7 @@ import os
 import sys
 import logging
 import logging.handlers
+from lxml import etree
 from functools import wraps
 from flask import Flask, request, Response, redirect, url_for, render_template
 from flask.ext.bcrypt import Bcrypt
@@ -176,7 +177,7 @@ def code_to_file(code, file_name, file_label):
 
 def upload_code(xml_data, python_data):
     uploadStart = time.time()
-    code_to_file(xml_data, 'code/rawxml.txt', 'XML')
+    code_to_file(etree.tostring(etree.fromstring(xml_data), pretty_print=True),, 'code/rawxml.txt', 'XML')
     code_to_file(convert_usercode(python_data), 'backend/usercode.py', 'Python')
 
     startTime = time.time()
