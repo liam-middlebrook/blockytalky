@@ -225,8 +225,8 @@ Blockly.Python.send_osc= function() {
 
 Blockly.Python.facebook_post= function() {
     var content = this.getTitleValue('content');
-    var code= 'with open("fb_config.yaml", "r") as myfile:
-    code += '\t' + 'token = yaml.load(myfile.read())
+    var code= 'with open("fb_config.yaml", "r") as myfile:' + '\n'
+    code += '\t' + 'token = yaml.load(myfile.read())i' + '\n'
     code += 'graph = GraphAPI(token)' + '\n'
     code += 'graph.post("me/feed", message="' + content + '")' +'\n'
     return code;
