@@ -194,6 +194,8 @@ def convert_usercode(python_code):
                 "import time\n"
                 "import RPi.GPIO as GPIO\n"
                 "import nickOSC\n"
+                "import yaml\n"
+                "from facepy import GraphAPI\n"
                 "import pyttsx\n\n"
                 "def run(self, channel, channel2):\n"
               #  "  while True:\n"

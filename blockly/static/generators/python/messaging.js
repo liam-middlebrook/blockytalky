@@ -224,11 +224,8 @@ Blockly.Python.send_osc= function() {
 };
 
 Blockly.Python.facebook_post= function() {
-    var token = this.getTitleValue('token');
     var content = this.getTitleValue('content');
-    var code = 'from facepy import GraphAPI' + '\n'
-    code += 'import yaml' + '\n'
-    code += 'with open("fb_config.yaml", "r") as myfile:
+    var code= 'with open("fb_config.yaml", "r") as myfile:
     code += '\t' + 'token = yaml.load(myfile.read())
     code += 'graph = GraphAPI(token)' + '\n'
     code += 'graph.post("me/feed", message="' + content + '")' +'\n'
