@@ -20,12 +20,9 @@ Page Templates:
      /blockytalky/blockly/static/apps/code/template2.soy
 
 Procedure:
-    1. Add new definition/generator to `blockly/static/generators/python/brickpi.js`
-    2. Add new block to `blockly/static/apps/code/template.soy`, compile with
-command copied from top of the file
-    3. Add new block to `blockly/static/apps/code/template2.soy, compile with
-command copied from top of the file
-    4. Compile the project by running `python blockly/static/build.py`
-**This must be done every time you change the generator file**
+    1. Open en2.html in FIREFOX (chrome has issues locally)
+    2. Add new definition/generator to brickpi.js
+    3. Add new block to template.soy, compile with command copied from top
+    4. Add new block to template2.soy, compile with command copied from top
     NOTE: YOU MUST DO BOTH, AND ACTUALLY USE THE RIGHT COMMAND FOR EACH FILE
     NOTE: for now put things under the BrickPi category
