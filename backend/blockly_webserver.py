@@ -275,6 +275,7 @@ def authenticate():
                     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
 @app.route('/webController', methods = ['GET', 'POST'])
+@requires_auth
 def webCommand():
     if request.method == 'POST':
         instructions = data['message']
