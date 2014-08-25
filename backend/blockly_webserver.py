@@ -274,16 +274,16 @@ def authenticate():
                     ' password to access BlockyTalky.', 401,
                     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
-@app.route('/remoteControl', methods = ['GET','POST'])
-@requires_auth
-def blockly():
-    startMsg = Message('name', None, 'HwCmd', Message.createImage(pin13=0))
-    startMsg = Message.encode(startMsg)
-    try:    
-        channel.basic_publish(exchange='', routing_key='HwCmd', body=startMsg)
-    except:
-        logger.exception('Failed to start the controller:')
-    return render_template('controller.html')
+#@app.route('/remoteControl', methods = ['GET','POST'])
+#@requires_auth
+#def blockly():
+#    startMsg = Message('name', None, 'HwCmd', Message.createImage(pin13=0))
+#    startMsg = Message.encode(startMsg)
+#    try:    
+#        channel.basic_publish(exchange='', routing_key='HwCmd', body=startMsg)
+#    except:
+#        logger.exception('Failed to start the controller:')
+#    return render_template('controller.html')
 
 @app.route('/webController', methods = ['GET', 'POST'])
 @requires_auth
