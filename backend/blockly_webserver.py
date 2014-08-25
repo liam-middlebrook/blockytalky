@@ -274,6 +274,12 @@ def authenticate():
                     ' password to access BlockyTalky.', 401,
                     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
+@app.route('/webController', methods = ['GET', 'POST'])
+def webCommand(instructions):
+    print instructions
+    return 'OK'
+
+
 if __name__ == '__main__':
     handler = logging.handlers.RotatingFileHandler(filename='/home/pi/blockytalky/logs/blockly_ws.log',
                                                    maxBytes=8192, backupCount=3)
