@@ -30,6 +30,7 @@ class LoggingModule(object):
         logging.error("A WebSocket error has occured.")
 
     def onMessage(self, ws, message):
+        print message + "  -- in lm, message recieved"
         logging.debug("Message received")
         current_time = datetime.datetime.now().time()
         current_time.isoformat()

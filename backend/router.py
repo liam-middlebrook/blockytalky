@@ -20,6 +20,8 @@ class DaxRouter(tornado.websocket.WebSocketHandler):
         logging.info("New connection.")
 
     def on_message(self, encodedMessage):
+        print encodedMessage + "   - in router, message recieved"
+
         logging.debug(">>> Method called: on_message")
         message = Message.decode(encodedMessage)
         destination = message.getDestination()

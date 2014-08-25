@@ -53,6 +53,7 @@ class Communicator(object):
 
     @staticmethod    
     def onRemoteMessage(ws, encodedMessage):
+        print encodedMessage + "    -- in comms module, remote message recieved"
         """ This method handles messages coming from DAX. """
         logger.debug(">>> Method called: onRemoteMessage")
         logger.info("Remote message received. Forwarded locally")
