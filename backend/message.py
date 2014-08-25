@@ -78,6 +78,7 @@ class Message(object):
         Returns the message encoded in JSON.
         Static method, usage: Message.encode(message)
         """
+        console.log(jsonpickle.encode(message))
         return jsonpickle.encode(message)
 
     @staticmethod
