@@ -87,6 +87,7 @@ class Message(object):
         Decodes a JSON formatted message and returns it.
         Static method, usage: Message.decode(encodedMessage)
         """
+        print encodedMessage
         return jsonpickle.decode(encodedMessage)
 
     @staticmethod
