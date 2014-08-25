@@ -274,7 +274,7 @@ def authenticate():
                     ' password to access BlockyTalky.', 401,
                     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
-@app.route('/remoteControl', methods = = ['GET','POST'])
+@app.route('/remoteControl', methods = ['GET','POST'])
 @requires_auth
 def blockly():
     startMsg = Message('name', None, 'HwCmd', Message.createImage(pin13=0))
