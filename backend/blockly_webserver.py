@@ -275,9 +275,11 @@ def authenticate():
                     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
 @app.route('/webController', methods = ['GET', 'POST'])
-def webCommand(instructions):
-    print instructions
-    return 'OK'
+def webCommand():
+    if request.method == 'POST':
+        instructions = data['message']
+        print instructions
+        return 'OK'
 
 
 if __name__ == '__main__':
