@@ -28,7 +28,7 @@ from functools import update_wrapper
 from flask.ext.cors import CORS
 
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(app, resourses={r"/api/*": {"origins": "*"}})
 bcrypt = Bcrypt(app)
 logger = logging.getLogger(__name__)
 device_settings = {
@@ -326,7 +326,6 @@ def authenticate():
                     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
 @app.route('/remoteControl/<direction>', methods = ['GET','POST', 'OPTIONS'])
-@cross_origin()
 def remoteControl(direction):
     print "direction recieved"
     print direction
