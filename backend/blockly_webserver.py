@@ -24,6 +24,7 @@ import jsonpickle
 # imports for the crossdomain decorator
 from datetime import timedelta
 from flask import make_response, current_app
+from functools import update_wrapper
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
