@@ -329,14 +329,14 @@ def remoteControl(direction):
         print "created toSend"
         toSend = Message.encode(toSend)
         print "Message encoded"
-        channel.basic_publish(exchange='', routing_key="HwCmd", body=toSend)
+        channel.basic_publish(exchange='', routing_key="Message", body=toSend)
         print "message sent"
         #forward
     elif direction == 'down':
         print "down recieved, sending hardware command"
-        toSend = Message('name', None, 'Message', "down")
+        toSend = Message('name', None, 'Message', "up")
         toSend = Message.encode(toSend)
-        channel.basic_publish(exchange='', routing_key="HwCmd", body=toSend)
+        channel.basic_publish(exchange='', routing_key="Message", body=toSend)
         print "message sent"
         #backwards
     elif direction == 'left':
