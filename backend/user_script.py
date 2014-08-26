@@ -60,6 +60,7 @@ class UserScript(object):
         element in message queue has the desired content.  otherwise
         returns false
         """
+        print "check"
         if self.msgQueue:
             print self.msgQueue
             logger.debug('Message queue contains %d messages' % len(self.msgQueue))
