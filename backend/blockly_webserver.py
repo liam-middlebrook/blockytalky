@@ -15,16 +15,13 @@ import sys
 import logging
 import logging.handlers
 from functools import wraps
-from flask import Flask, request, Response, redirect, url_for, render_template
+from flask import Flask, request, Response, redirect, url_for, render_template, make_response, current_app
 from flask.ext.bcrypt import Bcrypt
 from message import *
+from functools import update_wrapper
+from datetime import timedelta
 import time, commands, subprocess, pika
 import jsonpickle
-
-# imports for the crossdomain decorator
-from datetime import timedelta
-from flask import make_response, current_app
-from functools import update_wrapper
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
@@ -88,11 +85,6 @@ def requires_auth(f):
 def check_auth(username, password):
     return (username == device_settings['device_name'] and
             bcrypt.check_password_hash(device_settings['password_hash'], password))
-
-# allow crossdomain access
-from datetime import timedelta
-from flask import make_response, request, current_app
-from functools import update_wrapper
 
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,
