@@ -61,6 +61,7 @@ class UserScript(object):
         returns false
         """
         if self.msgQueue:
+            print self.msgQueue
             logger.debug('Message queue contains %d messages' % len(self.msgQueue))
             if self.msgQueue[0].getContent() == content:
                 logger.debug('Message matches content \'%s\'' % content)
