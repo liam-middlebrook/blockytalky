@@ -334,8 +334,10 @@ def remoteControl(direction):
         channel.basic_publish(exchange, routing_key="HwCmd", body=toSend)
         #backwards
     elif direction == 'left':
+        print "no commands for left"
         #turn left
     elif direction == 'right':
+        print "no commands for right"
         #turn right
 
     #print "direction recieved"
