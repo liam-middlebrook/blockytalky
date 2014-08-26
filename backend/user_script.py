@@ -61,7 +61,6 @@ class UserScript(object):
         returns false
         """
         if self.msgQueue:
-            print self.msgQueue
             logger.debug('Message queue contains %d messages' % len(self.msgQueue))
             if self.msgQueue[0].getContent() == content:
                 logger.debug('Message matches content \'%s\'' % content)
@@ -104,7 +103,6 @@ class UserScript(object):
         """
         # For testing purposes
         message = Message.decode(body)
-        print message
         if message.getChannel() == "Message":
             # If it's a "do this" type message ...
             logger.debug('Adding message from %s with content \'%s\'' % (message.getSource(), message.getContent()))

@@ -323,30 +323,9 @@ def authenticate():
 @app.route('/remoteControl/<direction>', methods = ['GET','POST'])
 @crossdomain(origin='*')
 def remoteControl(direction):
-    if direction == 'up':
-        print "up recieved, sending hardware command"
-        toSend = Message('spiderman', 'spiderman', 'Message', "up")
-        toSend = Message.encode(toSend)
-        channel2.basic_publish(exchange='', routing_key="Message", body=toSend)
-        print "message sent"
-        #forward
-    elif direction == 'down':
-        print "down recieved, sending hardware command"
-        toSend = Message('spiderman', 'spiderman', 'Message', "up")
-        toSend = Message.encode(toSend)
-        channel2.basic_publish(exchange='', routing_key="Message", body=toSend)
-        print "message sent"
-        #backwards
-    elif direction == 'left':
-        print "no commands for left"
-        #turn left
-    elif direction == 'right':
-        print "no commands for right"
-        #turn right
-
-
-    #print "direction recieved"
-    #print direction
+    toSend = Message('spiderman', 'spiderman', 'Message', direction)
+    toSend = Message.encode(toSend)
+    channel2.basic_publish(exchange='spiderman', routing_key="message", body=toSend)
     return 'OK'
 
 @app.route('/webController', methods = ['GET', 'POST'])
