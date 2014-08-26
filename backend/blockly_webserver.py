@@ -319,11 +319,27 @@ def authenticate():
                     ' password to access BlockyTalky.', 401,
                     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
+# currently this method will send instructions to motor ports 
 @app.route('/remoteControl/<direction>', methods = ['GET','POST'])
 @crossdomain(origin='*')
 def remoteControl(direction):
-    print "direction recieved"
-    print direction
+    if direction == 'up':
+        toSend = Message(self.hostname , None, "HwCmd", message.createImage(motor1=100))
+        toSend = Message.encode(toSend)
+        channel.basic_publish(exchange, routing_key="HwCmd", body=toSend)
+        #forward
+    elif direction == 'down':
+        toSend = Message(self.hostname , None, "HwCmd", message.createImage(motor1=0))
+        toSend = Message.encode(toSend)
+        channel.basic_publish(exchange, routing_key="HwCmd", body=toSend)
+        #backwards
+    elif direction == 'left':
+        #turn left
+    elif direction == 'right':
+        #turn right
+
+    #print "direction recieved"
+    #print direction
     return 'OK'
 
 @app.route('/webController', methods = ['GET', 'POST'])
