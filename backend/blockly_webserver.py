@@ -27,7 +27,6 @@ from flask import make_response, current_app
 from functools import update_wrapper
 
 app = Flask(__name__)
-cors = CORS(app, resourses={r"/api/*": {"origins": "*"}})
 bcrypt = Bcrypt(app)
 logger = logging.getLogger(__name__)
 device_settings = {
