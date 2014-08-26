@@ -324,14 +324,18 @@ def authenticate():
 @crossdomain(origin='*')
 def remoteControl(direction):
     if direction == 'up':
+        print "up recieved, sending hardware command"
         toSend = Message(self.hostname , None, "HwCmd", message.createImage(motor1=100))
         toSend = Message.encode(toSend)
         channel.basic_publish(exchange, routing_key="HwCmd", body=toSend)
+        print "message sent"
         #forward
     elif direction == 'down':
+        print "down recieved, sending hardware command"
         toSend = Message(self.hostname , None, "HwCmd", message.createImage(motor1=0))
         toSend = Message.encode(toSend)
         channel.basic_publish(exchange, routing_key="HwCmd", body=toSend)
+        print "message sent"
         #backwards
     elif direction == 'left':
         print "no commands for left"
