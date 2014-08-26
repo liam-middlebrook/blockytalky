@@ -25,8 +25,10 @@ import jsonpickle
 from datetime import timedelta
 from flask import make_response, current_app
 from functools import update_wrapper
+from flask.ext.cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app)
 bcrypt = Bcrypt(app)
 logger = logging.getLogger(__name__)
 device_settings = {
