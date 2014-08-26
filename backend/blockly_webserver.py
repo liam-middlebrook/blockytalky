@@ -326,7 +326,9 @@ def remoteControl(direction):
     if direction == 'up':
         print "up recieved, sending hardware command"
         toSend = Message(self.hostname , None, "HwCmd", message.createImage(motor1=100))
+        print "created toSend"
         toSend = Message.encode(toSend)
+        print "Message encoded"
         channel.basic_publish(exchange, routing_key="HwCmd", body=toSend)
         print "message sent"
         #forward
