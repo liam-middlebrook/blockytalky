@@ -104,6 +104,7 @@ class UserScript(object):
         """
         # For testing purposes
         message = Message.decode(body)
+        print message
         if message.getChannel() == "Message":
             # If it's a "do this" type message ...
             logger.debug('Adding message from %s with content \'%s\'' % (message.getSource(), message.getContent()))
