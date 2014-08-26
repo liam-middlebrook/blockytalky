@@ -325,18 +325,18 @@ def authenticate():
 def remoteControl(direction):
     if direction == 'up':
         print "up recieved, sending hardware command"
-        toSend = Message('name' , None, "HwCmd", message.createImage(motor1=100))
+        toSend = Message('name', None, 'HwCmd', Message.createImage(motor1=100, motor2=0, motor3=0, motor4=0, pin13=0))
         print "created toSend"
         toSend = Message.encode(toSend)
         print "Message encoded"
-        channel.basic_publish(exchange, routing_key="HwCmd", body=toSend)
+        channel.basic_publish(exchange='', routing_key="HwCmd", body=toSend)
         print "message sent"
         #forward
     elif direction == 'down':
         print "down recieved, sending hardware command"
-        toSend = Message('name' , None, "HwCmd", message.createImage(motor1=0))
+        toSend = Message('name', None, "HwCmd", message.createImage(motor1=0))
         toSend = Message.encode(toSend)
-        channel.basic_publish(exchange, routing_key="HwCmd", body=toSend)
+        channel.basic_publish(exchange='', routing_key="HwCmd", body=toSend)
         print "message sent"
         #backwards
     elif direction == 'left':
