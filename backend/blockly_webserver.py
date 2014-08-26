@@ -325,7 +325,7 @@ def authenticate():
 def remoteControl(direction):
     toSend = Message('spiderman', 'spiderman', 'Message', direction)
     toSend = Message.encode(toSend)
-    channel2.basic_publish(exchange='', routing_key="message", body=toSend)
+    channel2.basic_publish(exchange='', routing_key="Message", body=toSend)
     return 'OK'
 
 @app.route('/webController', methods = ['GET', 'POST'])
