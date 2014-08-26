@@ -324,7 +324,8 @@ def authenticate():
                     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
 @app.route('/remoteControl/<direction>', methods = ['GET','POST', 'OPTIONS'])
-@crossdomain(origin='*')
+#@crossdomain(origin='*')
+@cross_origin()
 def remoteControl(direction):
     print "direction recieved"
     print direction
